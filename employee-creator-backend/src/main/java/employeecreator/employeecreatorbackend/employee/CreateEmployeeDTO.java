@@ -2,74 +2,75 @@ package employeecreator.employeecreatorbackend.employee;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
-@Entity
-@Table(name= "employee")
-public class Employee {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // ~ AUTO_INCREMENT from 1
-	private Long id;
 
-	@Column
-	private String firstName;
+public class CreateEmployeeDTO {
+	@NotBlank(message = "First name is mandatory")
+	String firstName;
 	
-	@Column(nullable = true) // optional
-	private String middleName;
+	String middleName;
 	
-	@Column
-	private String lastName;
+	@NotBlank(message = "Last name is mandatory")
+	String lastName;
 	
-	@Column(unique = true, nullable = false)
-	private String email;
+	@NotBlank(message = "Email is mandatory")
+	String email;
 	
-	@Column(unique = true, nullable = false)
-	private Long phone;
+	@NotNull(message = "Phone is mandatory")
+	Long phone;
 	
-	@Column
-	private String address;
+	@NotBlank(message = "Address is mandatory")
+	String address;
+
+	@NotBlank(message = "Contract type is mandatory")
+	String contractType;
 	
-	@Column
-	private String contractType;
+	@NotNull(message = "Start date is mandatory")
+	LocalDate startDate;
 	
-	@Column
-	private LocalDate startDate;
 	
-	@Column(nullable = true)
-	private LocalDate finishDate;
+	LocalDate finishDate;
 	
-	@Column
-	private String employmentType;
+	@NotBlank(message = "Employment type is mandatory")
+	String employmentType;
 	
-	@Column
-	private Float hoursPerWeek;
-	
+	@NotNull(message = "Working hour is mandatory")
+	@Positive
+	Float hoursPerWeek;
 	
 	//// Constructors
-	public Employee() {}
+	//	public CreateEmployeeDTO() {}
 	
-	public Employee(String firstName, String middleName, String lastName, String email, Long phone, String address,
-			String contractType, LocalDate startDate, LocalDate finishDate, String employmentType, Float hoursPerWeek) {
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-		this.email = email;
-		this.phone = phone;
-		this.address = address;
-		this.contractType = contractType;
-		this.startDate = startDate;
-		this.finishDate = finishDate;
-		this.employmentType = employmentType;
-		this.hoursPerWeek = hoursPerWeek;
+	public CreateEmployeeDTO(
+	        String firstName,
+	        String middleName,
+	        String lastName,
+	        String email,
+	        Long phone,
+	        String address,
+	        String contractType,
+	        LocalDate startDate,
+	        LocalDate finishDate,
+	        String employmentType,
+	        Float hoursPerWeek) {
+	    this.firstName = firstName;
+	    this.middleName = middleName;
+	    this.lastName = lastName;
+	    this.email = email;
+	    this.phone = phone;
+	    this.address = address;
+	    this.contractType = contractType;
+	    this.startDate = startDate;
+	    this.finishDate = finishDate;
+	    this.employmentType = employmentType;
+	    this.hoursPerWeek = hoursPerWeek;
 	}
-
-
+	
 	//// Getter & Setter
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -157,10 +158,4 @@ public class Employee {
 	public void setHoursPerWeek(Float hoursPerWeek) {
 		this.hoursPerWeek = hoursPerWeek;
 	}
-
-	public Long getId() {
-		return id;
-	}
-	
-	
 }

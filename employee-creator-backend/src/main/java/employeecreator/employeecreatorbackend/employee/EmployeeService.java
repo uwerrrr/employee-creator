@@ -18,7 +18,11 @@ public class EmployeeService {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-
+	// check existing email
+	protected boolean isExistedEmail(String email) {
+		return this.employeeRepository.existsByEmail(email);
+	}
+	
 	
 	// ----- FIND -----
 	
@@ -28,4 +32,28 @@ public class EmployeeService {
 		// .findAll(): Returns all instances of the type.
 			// returns empty array if none is found
 	}
+	
+	
+	// ----- CREATE -----
+	public Employee create(CreateEmployeeDTO data) {
+		Employee newEmployee = modelMapper.map(data, Employee.class);
+		Employee createdEmployee = this.employeeRepository.save(newEmployee);
+		
+		return createdEmployee;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
