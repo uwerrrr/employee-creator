@@ -1,6 +1,7 @@
 package employeecreator.employeecreatorbackend.employee;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class EmployeeService {
 	protected boolean isExistedEmail(String email) {
 		return this.employeeRepository.existsByEmail(email);
 	}
+
+	// check existing phone
+	protected boolean isExistedPhone(Long phone) {
+		return this.employeeRepository.existsByPhone(phone);
+	}
 	
 	
 	// ----- FIND -----
@@ -32,6 +38,14 @@ public class EmployeeService {
 		// .findAll(): Returns all instances of the type.
 			// returns empty array if none is found
 	}
+	
+	// find id
+	public Optional<Employee> findById(Long id){
+		Optional<Employee> maybeEmployee = this.employeeRepository.findById(id);
+		
+		return maybeEmployee;
+	}
+	
 	
 	
 	// ----- CREATE -----
