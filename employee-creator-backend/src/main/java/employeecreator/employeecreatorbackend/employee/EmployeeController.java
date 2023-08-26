@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import employeecreator.employeecreatorbackend.exceptions.NotFoundException;
 import jakarta.validation.Valid;
-
 
 @RestController
 @RequestMapping("/employee")
@@ -73,7 +74,28 @@ public class EmployeeController {
 		return new ResponseEntity<>(createdEmployee, HttpStatus.CREATED);
 	}
 	
+	// ----- DELETE -----	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Employee> deleteById(@PathVariable Long id){
+		boolean isEmployeeDeleted = this.employeeService.deleteById(id);
+		
+		if (!isEmployeeDeleted) {
+			throw new NotFoundException(String.format("Employee with id %s not found, could not be deleted", id));
+		}
+		
+		return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+	}
 	
-	
+	// ----- PATCH -----	
+	@PatchMapping("/{id}")
+	public ResponseEntity<Employee> updateById(@PathVariable Long id, @Valid @RequestBody UpdateEmployeeDTO data){
+		
+		Optional<Employee> maybeEmployeeUpdated = this.employeeService.updateById(id, data);
+		if(maybeEmployeeUpdated.isEmpty()) {
+			throw new NotFoundException(String.format("Employee with id %s not found, could not be updated", id));
+		}
+		
+		return new ResponseEntity<Employee>(maybeEmployeeUpdated.get(), HttpStatus.OK);
+	}
 	
 }
