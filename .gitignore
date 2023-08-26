@@ -1,3 +1,5 @@
 
 .DS_Store
 employee-creator-backend/src/main/resources/application.properties
+employee-creator.code-workspace
+.DS_Store
