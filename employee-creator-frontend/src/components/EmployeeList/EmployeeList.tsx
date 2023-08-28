@@ -1,4 +1,4 @@
-import { Employee } from "../../pages/HomePage/HomePage";
+import { Employee } from "../../scripts/interfaces";
 import EmployeeNode from "../EmployeeNode/EmployeeNode";
 import style from "./EmployeeList.module.scss";
 

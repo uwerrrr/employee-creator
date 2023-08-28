@@ -2,21 +2,8 @@ import { useEffect, useState } from "react";
 
 import EmployeeList from "../../components/EmployeeList/EmployeeList";
 import { getAllEmployee } from "../../services/backend-service";
-
-export interface Employee {
-  id: number;
-  firstName: string;
-  middleName: string | null;
-  lastName: string;
-  email: string;
-  phone: number;
-  address: string;
-  contractType: "Full-Time" | "Part-Time";
-  startDate: Date;
-  finishDate: Date | null;
-  employmentType: "Permanent" | "Contract";
-  hoursPerWeek: number;
-}
+import { Employee } from "../../scripts/interfaces";
+import myCals from "../../scripts/myCals.ts";
 
 const HomePage = () => {
   const [employees, setEmployees] = useState<Employee[]>([]);
@@ -25,6 +12,9 @@ const HomePage = () => {
   // get all data whenever requestNum state is changed
   useEffect(() => {
     getAllEmployee().then((res) => {
+      res.forEach((element: Employee) => {
+        element.duration = myCals.calDuration(element);
+      });
       setEmployees(res);
     });
   }, [requestNum]);
