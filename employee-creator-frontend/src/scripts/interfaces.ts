@@ -17,8 +17,8 @@ export interface Employee extends BaseEmployee {
   duration: number;
 }
 // Make all properties in T empty ""
-type MakeNullable<T> = {
-  [P in keyof T]: T[P] | "";
-};
+// type MakeNullable<T> = {
+//   [P in keyof T]: T[P] | "";
+// };
 
-export interface CreateEmployeeDTO extends MakeNullable<BaseEmployee> {}
+export interface CreateEmployeeDTO extends BaseEmployee {}
