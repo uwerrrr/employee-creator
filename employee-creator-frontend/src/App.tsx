@@ -1,10 +1,13 @@
 import "./App.scss";
+import RequestNumContextProvider from "./context/RequestNumContextProvider";
 import HomePage from "./pages/HomePage/HomePage";
 
 function App() {
   return (
     <>
-      <HomePage />
+      <RequestNumContextProvider>
+        <HomePage />
+      </RequestNumContextProvider>
     </>
   );
 }
