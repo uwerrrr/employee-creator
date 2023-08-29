@@ -8,12 +8,14 @@ import {
   RequestNumContext,
   RequestNumContextType,
 } from "../../context/RequestNumContextProvider.tsx";
+import { Link, useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   const { requestNum } = useContext(RequestNumContext) as RequestNumContextType;
 
   const [employees, setEmployees] = useState<Employee[]>([]);
-  // const [requestNum, setRequestNum] = useState<number>(0);
 
   // get all data whenever requestNum state is changed
   useEffect(() => {
@@ -27,8 +29,14 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1>Employee creator application</h1>
-      <button>Add employee</button>
+      <h2>All employees</h2>
+      <button
+        onClick={() => {
+          navigate("/add");
+        }}
+      >
+        Add new employee
+      </button>
       <EmployeeList employees={employees} />
     </div>
   );
