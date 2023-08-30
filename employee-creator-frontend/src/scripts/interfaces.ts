@@ -22,3 +22,5 @@ export interface Employee extends BaseEmployee {
 // };
 
 export interface CreateEmployeeDTO extends BaseEmployee {}
+
+export interface UpdateEmployeeDTO extends BaseEmployee {}

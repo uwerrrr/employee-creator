@@ -9,7 +9,7 @@ export const RequestNumContext = createContext<RequestNumContextType | null>(
   null
 );
 
-export const RequestNumProvider: React.FC<{ children: ReactNode }> = ({
+export const RequestNumContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [requestNum, setRequestNum] = useState<number>(0);
@@ -25,4 +25,4 @@ export const RequestNumProvider: React.FC<{ children: ReactNode }> = ({
   );
 };
 
-export default RequestNumProvider;
+export default RequestNumContextProvider;

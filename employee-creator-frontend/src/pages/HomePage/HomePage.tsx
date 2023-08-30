@@ -32,6 +32,7 @@ const HomePage = () => {
       <h2>All employees</h2>
       <button
         onClick={() => {
+          
           navigate("/add");
         }}
       >
