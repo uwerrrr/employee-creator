@@ -1,14 +1,14 @@
 interface BaseEmployee {
   firstName: string;
-  middleName: string | null;
+  middleName?: string | null;
   lastName: string;
   email: string;
-  phone: number;
+  phone: string;
   address: string;
-  contractType: "Full-Time" | "Part-Time";
+  employmentType: "Full-Time" | "Part-Time";
   startDate: Date;
-  finishDate: Date | null;
-  employmentType: "Permanent" | "Contract";
+  finishDate?: Date | null;
+  contractType: "Permanent" | "Contract";
   hoursPerWeek: number;
 }
 
