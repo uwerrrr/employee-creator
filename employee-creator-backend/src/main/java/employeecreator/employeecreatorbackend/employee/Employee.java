@@ -29,7 +29,7 @@ public class Employee {
 	private String email;
 	
 	@Column(unique = true, nullable = false)
-	private Long phone;
+	private String phone;
 	
 	@Column
 	private String address;
@@ -53,7 +53,7 @@ public class Employee {
 	//// Constructors
 	public Employee() {}
 	
-	public Employee(String firstName, String middleName, String lastName, String email, Long phone, String address,
+	public Employee(String firstName, String middleName, String lastName, String email, String phone, String address,
 			String contractType, LocalDate startDate, LocalDate finishDate, String employmentType, Float hoursPerWeek) {
 		this.firstName = firstName;
 		this.middleName = middleName;
@@ -102,11 +102,11 @@ public class Employee {
 		this.email = email;
 	}
 
-	public Long getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Long phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

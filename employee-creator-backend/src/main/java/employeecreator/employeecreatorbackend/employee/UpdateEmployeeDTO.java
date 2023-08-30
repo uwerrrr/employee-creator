@@ -20,8 +20,8 @@ public class UpdateEmployeeDTO {
 	@Pattern(regexp = "^(?=\\S).*$", message="Content cannot be an empty string") // should not content only white space
 	String email;
 	
-	@Positive
-	Long phone;
+	@Pattern(regexp = "^(?=\\S).*$", message="Content cannot be an empty string") // should not content only white space
+	String phone;
 	
 	@Pattern(regexp = "^(?=\\S).*$", message="Content cannot be an empty string") // should not content only white space
 	String address;
@@ -73,11 +73,11 @@ public class UpdateEmployeeDTO {
 		this.email = email;
 	}
 
-	public Long getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Long phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

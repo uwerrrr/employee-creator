@@ -23,8 +23,8 @@ public class CreateEmployeeDTO {
 	@NotBlank(message = "Email is mandatory")
 	String email;
 	
-	@NotNull(message = "Phone is mandatory")
-	Long phone;
+	@NotBlank(message = "Phone is mandatory")
+	String phone;
 	
 	@NotBlank(message = "Address is mandatory")
 	String address;
@@ -44,7 +44,7 @@ public class CreateEmployeeDTO {
 	String employmentType;
 	
 	@NotNull(message = "Working hour is mandatory")
-	@Positive
+	@Positive(message = "Working hour must be positive")
 	Float hoursPerWeek;
 	
 	//// Constructors
@@ -55,7 +55,7 @@ public class CreateEmployeeDTO {
 	        String middleName,
 	        String lastName,
 	        String email,
-	        Long phone,
+	        String phone,
 	        String address,
 	        String contractType,
 	        LocalDate startDate,
@@ -109,11 +109,11 @@ public class CreateEmployeeDTO {
 		this.email = email;
 	}
 
-	public Long getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Long phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

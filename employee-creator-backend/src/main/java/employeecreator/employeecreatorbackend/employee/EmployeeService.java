@@ -25,7 +25,7 @@ public class EmployeeService {
 	}
 
 	// check existing phone
-	protected boolean isExistedPhone(Long phone) {
+	protected boolean isExistedPhone(String phone) {
 		return this.employeeRepository.existsByPhone(phone);
 	}
 	

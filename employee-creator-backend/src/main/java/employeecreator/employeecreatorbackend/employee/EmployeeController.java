@@ -52,7 +52,7 @@ public class EmployeeController {
 	public ResponseEntity <Employee> createEmployee(@Valid @RequestBody CreateEmployeeDTO data){
 		
 		String enteredEmail = data.getEmail();
-		Long enteredPhone = data.getPhone();
+		String enteredPhone = data.getPhone();
 		
 		boolean isExistedPhone = this.employeeService.isExistedPhone(enteredPhone);
 		boolean isExistedEmail = this.employeeService.isExistedEmail(enteredEmail);
