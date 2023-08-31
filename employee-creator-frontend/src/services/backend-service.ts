@@ -1,4 +1,5 @@
 import { CreateEmployeeDTO } from "../scripts/interfaces";
+import myScripts from "../scripts/myScripts";
 
 export const getAllEmployee = async () => {
   //// fetch data
@@ -22,12 +23,21 @@ export const getAllEmployee = async () => {
 };
 
 export const createEmployee = async (data: CreateEmployeeDTO) => {
+  const formattedData = {
+    ...data,
+    startDate: myScripts.toDateString(data.startDate),
+    finishDate:
+      data.finishDate !== null && data.finishDate !== undefined
+        ? myScripts.toDateString(data.finishDate as Date)
+        : null,
+  };
+
   const response = await fetch("http://localhost:8080/employee", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(formattedData),
   });
 
   if (!response.ok) {

@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import EmployeeList from "../../components/EmployeeList/EmployeeList";
 import { getAllEmployee } from "../../services/backend-service";
 import { Employee } from "../../scripts/interfaces";
-import myCals from "../../scripts/myCals.ts";
+import myScripts from "../../scripts/myScripts.ts";
 import {
   RequestNumContext,
   RequestNumContextType,
@@ -21,7 +21,7 @@ const HomePage = () => {
   useEffect(() => {
     getAllEmployee().then((res) => {
       res.forEach((element: Employee) => {
-        element.duration = myCals.calDuration(element);
+        element.duration = myScripts.calDuration(element);
       });
       setEmployees(res);
     });
@@ -32,7 +32,6 @@ const HomePage = () => {
       <h2>All employees</h2>
       <button
         onClick={() => {
-          
           navigate("/add");
         }}
       >
