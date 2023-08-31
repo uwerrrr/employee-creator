@@ -65,7 +65,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
   const [errorMess, setErrorMess] = useState("");
 
   const formSubmit = async (data: CreateEmployeeDTO | UpdateEmployeeDTO) => {
-    const formattedData: CreateEmployeeDTO = {
+    const formattedData = {
       ...data,
       middleName: data.middleName || null,
       finishDate: data.finishDate || null,
@@ -286,7 +286,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
 
         <button type="submit">Submit</button>
       </form>
-      {error && <p>{error.message}</p>}
+      {errorMess && <p>{errorMess}</p>}
     </>
   );
 };
