@@ -15,16 +15,23 @@ const HomePage = () => {
 
   const { requestNum } = useContext(RequestNumContext) as RequestNumContextType;
 
+  const [loading, setLoading] = useState(true);
+  const [errorMess, setErrorMess] = useState("");
+
   const [employees, setEmployees] = useState<Employee[]>([]);
 
   // get all data whenever requestNum state is changed
   useEffect(() => {
-    getAllEmployee().then((res) => {
-      res.forEach((element: Employee) => {
-        element.duration = myScripts.calDuration(element);
-      });
-      setEmployees(res);
-    });
+    setLoading(true);
+    getAllEmployee()
+      .then((res) => {
+        res.forEach((element: Employee) => {
+          element.duration = myScripts.calDuration(element);
+        });
+        setEmployees(res);
+      })
+      .catch((err) => setErrorMess(err.message))
+      .finally(() => setLoading(false));
   }, [requestNum]);
 
   return (

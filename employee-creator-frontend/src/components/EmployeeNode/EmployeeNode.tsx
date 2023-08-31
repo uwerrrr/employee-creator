@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Employee } from "../../scripts/interfaces";
 
 interface EmployeeNodeProps {
@@ -19,7 +20,8 @@ const EmployeeNode: React.FC<EmployeeNodeProps> = ({ employee }) => {
         <p>{employee.email}</p>
       </section>
       <section>
-        <a href="">View</a> | <a href="">Edit</a> | <a href="">Delete</a>
+        <Link to={`${employee.id}`}>View</Link>| <a href="">Edit</a> |{" "}
+        <a href="">Delete</a>
       </section>
     </>
   );
