@@ -2,8 +2,8 @@ import { Employee } from "./interfaces";
 
 const calDuration = (employee: Employee): number => {
   const timeDiffInMS =
-    employee.finishDate !== null
-      ? (employee.finishDate as Date).getTime() - employee.startDate.getTime()
+    employee.finishDate !== null && employee.finishDate !== undefined
+      ? employee.finishDate.getTime() - employee.startDate.getTime()
       : Date.now() - employee.startDate.getTime();
   // duration: months round to 1 decimal
   return (

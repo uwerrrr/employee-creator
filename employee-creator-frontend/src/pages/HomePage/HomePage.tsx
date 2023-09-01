@@ -22,21 +22,40 @@ const HomePage = () => {
 
   // get all data whenever requestNum state is changed
   useEffect(() => {
+    setErrorMess(errorMess ? "" : errorMess);
     setLoading(true);
     getAllEmployee()
       .then((res) => {
-        res.forEach((element: Employee) => {
-          element.duration = myScripts.calDuration(element);
-        });
         setEmployees(res);
       })
       .catch((err) => setErrorMess(err.message))
       .finally(() => setLoading(false));
   }, [requestNum]);
 
+  // const { makeRefresh } = useContext(
+  //   RequestNumContext
+  // ) as RequestNumContextType;
+  // const [errorMess, setErrorMess] = useState("");
+  // const [loading, setLoading] = useState(false);
+
+  // const handleDelete = async (id: Employee["id"]) => {
+  //   setLoading(true);
+  //   try {
+  //     setErrorMess(errorMess ? "" : errorMess);
+  //     await deleteEmployeeById(id);
+  //     console.log(`Employee ${id} is deleted`);
+  //     makeRefresh();
+  //   } catch (error) {
+  //     setErrorMess((error as Error).message);
+  //     console.error(error);
+  //   } finally {
+  //     () => setLoading(false);
+  //   }
+  // };
+
   return (
     <div>
-      <h2>All employees</h2>
+      <h2>All employees</h2>{" "}
       <button
         onClick={() => {
           navigate("/add");
@@ -44,7 +63,9 @@ const HomePage = () => {
       >
         Add new employee
       </button>
-      <EmployeeList employees={employees} />
+      {loading && <p>...</p>}
+      {!loading && employees && <EmployeeList employees={employees} />}
+      {!loading && errorMess && <p>{errorMess}</p>}
     </div>
   );
 };

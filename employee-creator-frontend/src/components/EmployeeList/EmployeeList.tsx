@@ -7,8 +7,6 @@ interface EmployeeListProps {
 }
 
 const EmployeeList: React.FC<EmployeeListProps> = ({ employees }) => {
-  console.log(employees);
-
   return (
     <>
       {employees.length > 0 &&

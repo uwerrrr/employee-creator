@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import EmployeeView from "../../components/EmployeeView/EmployeeView";
 import { Employee } from "../../scripts/interfaces";
 import { useEffect, useState } from "react";
@@ -15,9 +15,14 @@ const ViewPage = () => {
 
   useEffect(() => {
     setLoading(true);
+    if (errorMess) {
+      setErrorMess("");
+    }
     if (id) {
       getEmployeeById(parseInt(id))
-        .then((employee) => setEmployee(employee))
+        .then((employee) => {
+          setEmployee(employee);
+        })
         .catch((err) => setErrorMess(err.message))
         .finally(() => setLoading(false));
     } else {
@@ -28,6 +33,8 @@ const ViewPage = () => {
 
   return (
     <>
+      <Link to={"/"}> {"<"} Back</Link>
+      <h2>Employee Information</h2>
       {loading && <p>...</p>}
       {!loading && employee && <EmployeeView employee={employee} />}
       {!loading && errorMess && <p>{errorMess}</p>}

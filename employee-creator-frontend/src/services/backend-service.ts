@@ -1,7 +1,7 @@
-import { CreateEmployeeDTO } from "../scripts/interfaces";
+import { CreateEmployeeDTO, Employee } from "../scripts/interfaces";
 import myScripts from "../scripts/myScripts";
 
-export const getAllEmployee = async () => {
+export const getAllEmployee = async (): Promise<Employee[]> => {
   //// fetch data
   const response = await fetch("http://localhost:8080/employee");
 
@@ -11,17 +11,23 @@ export const getAllEmployee = async () => {
 
   const data = await response.json();
 
-  data.map((item: any) => {
+  data.map((item: any): Employee => {
     item.startDate = new Date(item.startDate);
     item.finishDate =
-      item.finishDate !== null ? new Date(item.finishDate) : null;
+      item.finishDate !== null && item.finishDate !== undefined
+        ? new Date(item.finishDate)
+        : null;
+
+    item.duration = myScripts.calDuration(item);
     return item;
   });
 
   return data;
 };
 
-export const createEmployee = async (data: CreateEmployeeDTO) => {
+export const createEmployee = async (
+  data: CreateEmployeeDTO
+): Promise<void> => {
   const formattedData = {
     ...data,
     startDate: myScripts.toDateString(data.startDate),
@@ -44,23 +50,28 @@ export const createEmployee = async (data: CreateEmployeeDTO) => {
   }
 };
 
-export const getEmployeeById = async (id: number) => {
+export const getEmployeeById = async (
+  id: Employee["id"]
+): Promise<Employee> => {
   const response = await fetch(`http://localhost:8080/employee/${id}`);
 
   if (!response.ok) {
     throw new Error(`Employee with id : ${id} does not exist`);
   }
 
-  const employee = await response.json();
+  const employee: Employee = await response.json();
 
   employee.startDate = new Date(employee.startDate);
   employee.finishDate =
-    employee.finishDate !== null ? new Date(employee.finishDate) : null;
+    employee.finishDate !== null && employee.finishDate !== undefined
+      ? new Date(employee.finishDate)
+      : null;
+  employee.duration = myScripts.calDuration(employee);
 
   return employee;
 };
 
-export const deleteEmployeeById = async (id: number) => {
+export const deleteEmployeeById = async (id: Employee["id"]): Promise<void> => {
   const response = await fetch(`http://localhost:8080/employee/${id}`, {
     method: "DELETE",
   });
