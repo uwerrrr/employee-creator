@@ -18,7 +18,7 @@ public class WebConfig implements WebMvcConfigurer{
 			
 		registry.addMapping("/**") // /** : any endpoint on the server is affected by these settings.
 			.allowedOrigins(allowedOrigins)
-			.allowedMethods("GET", "POST","DELETE")
+			.allowedMethods("GET", "POST", "DELETE", "PATCH")
 			.allowedHeaders("*");
 	}
 }
