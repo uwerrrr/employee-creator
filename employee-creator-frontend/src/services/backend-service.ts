@@ -101,7 +101,7 @@ export const updateEmployeeById = async (
         : null,
   };
 
-  const response = await fetch("http://localhost:8080/employee", {
+  const response = await fetch(`http://localhost:8080/employee/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

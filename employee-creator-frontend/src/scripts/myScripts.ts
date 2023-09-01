@@ -20,7 +20,23 @@ const toDateString = (date: Date): string => {
   return `${year}-${month}-${day}`;
 };
 
+const convertUndefinedToNull = (
+  obj: Record<string, any>
+): Record<string, any> => {
+  for (const key in obj) {
+    if (typeof obj[key] === "object" && obj[key] !== null) {
+      // If the property is an object (and not null), recursively process items in that object
+      obj[key] = convertUndefinedToNull(obj[key]);
+    } else if (obj[key] === undefined) {
+      // Convert undefined to null
+      obj[key] = null;
+    }
+  }
+  return obj;
+};
+
 export default {
   calDuration,
   toDateString,
+  convertUndefinedToNull,
 };

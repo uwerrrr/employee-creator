@@ -3,36 +3,33 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { schema } from "../../scripts/schema";
 import style from "./EmployeeForm.module.scss";
-import { CreateEmployeeDTO, UpdateEmployeeDTO } from "../../scripts/interfaces";
+import {
+  CreateEmployeeDTO,
+  Employee,
+  UpdateEmployeeDTO,
+} from "../../scripts/interfaces";
 import { useState } from "react";
-import { createEmployee } from "../../services/backend-service";
+import {
+  createEmployee,
+  updateEmployeeById,
+} from "../../services/backend-service";
 import { useNavigate } from "react-router-dom";
+import myScripts from "../../scripts/myScripts";
 
 export interface EmployeeFormProps {
   editMode?: boolean;
-  employee?: UpdateEmployeeDTO;
+  employee?: Employee;
+}
+
+interface FormData extends yup.InferType<typeof schema> {
+  employmentType: "Full-Time" | "Part-Time";
+  contractType: "Permanent" | "Contract";
 }
 
 const EmployeeForm: React.FC<EmployeeFormProps> = ({
   editMode,
   employee,
 }: EmployeeFormProps) => {
-  //// test employee
-  // employee = {
-  //   address: "123 Main St, City",
-  //   employmentType: "Full-Time",
-  //   email: "johndoe@example1.com",
-  //   contractType: "Permanent",
-  //   finishDate: null,
-  //   firstName: "John1abc",
-  //   hoursPerWeek: 40,
-  //   lastName: "Doe",
-  //   middleName: null,
-  //   phone: "1234567890",
-  //   startDate: new Date(1998, 3, 20),
-  // };
-  console.log(employee);
-
   const getDefaultVal = (
     fieldName: keyof UpdateEmployeeDTO | keyof CreateEmployeeDTO,
     manualDefault: string | number | null | undefined = undefined
@@ -60,22 +57,17 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
 
   const [errorMess, setErrorMess] = useState("");
 
-  const formSubmit = async (data: CreateEmployeeDTO | UpdateEmployeeDTO) => {
-    const formattedData = {
-      ...data,
-      middleName: data.middleName || null,
-      finishDate: data.finishDate || null,
-    };
+  const formSubmit = async (data: FormData) => {
+    // const formattedData = myScripts.convertUndefinedToNull(data);
+    const formattedData = { ...data };
+
+    setErrorMess(errorMess ? "" : errorMess);
 
     if (!employee) {
+      const toCreateData: CreateEmployeeDTO = { ...formattedData };
+
       try {
-        if (errorMess) {
-          setErrorMess("");
-        }
-
-        await createEmployee(formattedData);
-
-        console.log(formattedData);
+        await createEmployee(toCreateData);
         console.log("New employee created");
         navigate("/");
       } catch (error) {
@@ -83,7 +75,40 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
         console.error(error);
       }
     } else {
-      
+      const toUpdateData: UpdateEmployeeDTO = { ...formattedData };
+
+      for (const key in formattedData) {
+        const formKey = key as keyof FormData;
+        // if data is unchanged -> delete it from toUpdateData
+        if (employee.hasOwnProperty(formKey)) {
+          const employeeKey: keyof Employee = formKey;
+          const employeeValue = employee[employeeKey];
+          const formattedValue = formattedData[formKey];
+
+          if (
+            employeeValue === formattedValue ||
+            (employeeValue instanceof Date &&
+              formattedValue instanceof Date &&
+              employeeValue.getTime() === formattedValue.getTime())
+          ) {
+            const updateKey: keyof UpdateEmployeeDTO = formKey;
+            delete toUpdateData[updateKey];
+          }
+        }
+      }
+
+      try {
+        await updateEmployeeById(employee.id, toUpdateData);
+        console.log(
+          Object.keys(toUpdateData).length === 0
+            ? `Employee ${employee.id} is unchanged`
+            : `Employee ${employee.id} is updated`
+        );
+        navigate("/");
+      } catch (error) {
+        setErrorMess((error as Error).message);
+        console.error(error);
+      }
     }
   };
 
