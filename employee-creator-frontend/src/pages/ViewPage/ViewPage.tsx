@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import EmployeeView from "../../components/EmployeeView/EmployeeView";
 import { Employee } from "../../scripts/interfaces";
 import { useEffect, useState } from "react";
@@ -6,6 +6,7 @@ import { getEmployeeById } from "../../services/backend-service";
 
 const ViewPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [employee, setEmployee] = useState<Employee>();
 
@@ -33,7 +34,7 @@ const ViewPage = () => {
 
   return (
     <>
-      <Link to={"/"}> {"<"} Back</Link>
+      <button onClick={() => navigate(-1)}> {"<"} Back</button>
       <h2>Employee Information</h2>
       {loading && <p>...</p>}
       {!loading && employee && <EmployeeView employee={employee} />}

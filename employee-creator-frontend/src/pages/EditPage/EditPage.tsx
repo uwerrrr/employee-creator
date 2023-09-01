@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import EmployeeForm from "../../components/EmployeeForm/EmployeeForm";
 import { useEffect, useState } from "react";
 import { getEmployeeById } from "../../services/backend-service";
@@ -6,7 +6,8 @@ import { Employee } from "../../scripts/interfaces";
 
 const EditPage = () => {
   const { id } = useParams();
-
+  const navigate = useNavigate();
+  
   const [employee, setEmployee] = useState<Employee>();
 
   const [loading, setLoading] = useState(true);
@@ -33,7 +34,7 @@ const EditPage = () => {
 
   return (
     <div>
-      <Link to={"../"}> {"<"} Back</Link>
+      <button onClick={() => navigate(-1)}> {"<"} Back</button>
       <h2>Edit employee</h2>
       {loading && <p>...</p>}
       {!loading && employee && <EmployeeForm employee={employee} />}
