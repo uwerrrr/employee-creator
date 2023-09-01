@@ -1,4 +1,8 @@
-import { CreateEmployeeDTO, Employee } from "../scripts/interfaces";
+import {
+  CreateEmployeeDTO,
+  Employee,
+  UpdateEmployeeDTO,
+} from "../scripts/interfaces";
 import myScripts from "../scripts/myScripts";
 
 export const getAllEmployee = async (): Promise<Employee[]> => {
@@ -46,7 +50,7 @@ export const createEmployee = async (
   });
 
   if (!response.ok) {
-    throw new Error("Could not create a employee");
+    throw new Error("Could not create an employee");
   }
 };
 
@@ -78,5 +82,34 @@ export const deleteEmployeeById = async (id: Employee["id"]): Promise<void> => {
 
   if (!response.ok) {
     throw new Error("Could not delete employee");
+  }
+};
+
+export const updateEmployeeById = async (
+  id: Employee["id"],
+  data: UpdateEmployeeDTO
+): Promise<void> => {
+  const formattedData = {
+    ...data,
+    startDate:
+      data.startDate !== null && data.startDate !== undefined
+        ? myScripts.toDateString(data.startDate as Date)
+        : null,
+    finishDate:
+      data.finishDate !== null && data.finishDate !== undefined
+        ? myScripts.toDateString(data.finishDate as Date)
+        : null,
+  };
+
+  const response = await fetch("http://localhost:8080/employee", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formattedData),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Could not update employee ${id}`);
   }
 };
