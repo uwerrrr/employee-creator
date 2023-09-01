@@ -31,6 +31,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
   //   phone: "1234567890",
   //   startDate: new Date(1998, 3, 20),
   // };
+  console.log(employee);
 
   const getDefaultVal = (
     fieldName: keyof UpdateEmployeeDTO | keyof CreateEmployeeDTO,
@@ -38,7 +39,6 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
   ) => {
     if (employee) {
       const val = employee[fieldName];
-      console.log(val);
       if (val === null) return null;
       else if (typeof val === typeof new Date()) {
         return (val as Date).toISOString().split("T")[0];
@@ -53,10 +53,6 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
       | UpdateEmployeeDTO["employmentType"]
       | UpdateEmployeeDTO["contractType"]
   ): boolean => {
-    // if (getDefaultVal(fieldName) === valToCheck) {
-    //   return true;
-    // } else return false;
-
     return getDefaultVal(fieldName) === valToCheck ? true : false;
   };
 
@@ -87,6 +83,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
         console.error(error);
       }
     } else {
+      
     }
   };
 

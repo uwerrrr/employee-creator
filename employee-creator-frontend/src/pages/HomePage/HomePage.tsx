@@ -32,27 +32,6 @@ const HomePage = () => {
       .finally(() => setLoading(false));
   }, [requestNum]);
 
-  // const { makeRefresh } = useContext(
-  //   RequestNumContext
-  // ) as RequestNumContextType;
-  // const [errorMess, setErrorMess] = useState("");
-  // const [loading, setLoading] = useState(false);
-
-  // const handleDelete = async (id: Employee["id"]) => {
-  //   setLoading(true);
-  //   try {
-  //     setErrorMess(errorMess ? "" : errorMess);
-  //     await deleteEmployeeById(id);
-  //     console.log(`Employee ${id} is deleted`);
-  //     makeRefresh();
-  //   } catch (error) {
-  //     setErrorMess((error as Error).message);
-  //     console.error(error);
-  //   } finally {
-  //     () => setLoading(false);
-  //   }
-  // };
-
   return (
     <div>
       <h2>All employees</h2>{" "}

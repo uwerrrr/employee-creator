@@ -51,7 +51,8 @@ const EmployeeNode: React.FC<EmployeeNodeProps> = ({ employee }) => {
             <p>{employee.email}</p>
           </section>
           <section>
-            <Link to={`${employee.id}`}>View</Link>| <a href="">Edit</a> |{" "}
+            <Link to={`${employee.id}`}>View</Link> |{" "}
+            <Link to={`${employee.id}/edit`}>Edit</Link> |{" "}
             <a href="" onClick={() => handleDelete(employee.id)}>
               Delete
             </a>
