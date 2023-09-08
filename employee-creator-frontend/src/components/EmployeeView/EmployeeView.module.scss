@@ -1,0 +1,35 @@
+@use "../../style/theme.scss";
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  min-width: 300px;
+  width: 60%;
+  max-width: 100%;
+  position: relative;
+}
+
+.item {
+  // margin: 10px 0;
+  color: #777;
+}
+
+.label {
+  font-weight: bold;
+  color: theme.$night;
+}
+
+.editLink {
+  text-align: right;
+  text-decoration: none;
+  color: #007bff;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
