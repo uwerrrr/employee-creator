@@ -42,7 +42,7 @@ const HomePage = () => {
       >
         Add new employee
       </button>
-      {loading && <p>...</p>}
+      {loading && <p>Loading...</p>}
       {!loading && employees && <EmployeeList employees={employees} />}
       {!loading && errorMess && <p>{errorMess}</p>}
     </div>

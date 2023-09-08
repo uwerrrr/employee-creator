@@ -7,7 +7,7 @@ import { Employee } from "../../scripts/interfaces";
 const EditPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  
+
   const [employee, setEmployee] = useState<Employee>();
 
   const [loading, setLoading] = useState(true);
@@ -36,7 +36,7 @@ const EditPage = () => {
     <div>
       <button onClick={() => navigate(-1)}> {"<"} Back</button>
       <h2>Edit employee</h2>
-      {loading && <p>...</p>}
+      {loading && <p>Loading...</p>}
       {!loading && employee && <EmployeeForm employee={employee} />}
       {!loading && errorMess && <p>{errorMess}</p>}
     </div>

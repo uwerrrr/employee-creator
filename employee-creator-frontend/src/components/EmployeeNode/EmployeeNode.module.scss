@@ -1,0 +1,69 @@
+@use "../../style/theme.scss";
+
+/* Card */
+.card {
+  background-color: #fff;
+  // border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+  width: 40%;
+
+  padding: 20px;
+}
+
+/* Loading message */
+.loading {
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Information section */
+.info {
+  margin: 10px 0 0 0;
+}
+
+/* Name */
+.name {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Employment information */
+.employment {
+  margin: 5px 0;
+}
+
+/* Email */
+.email {
+  margin: 5px 0;
+  color: #555;
+}
+
+/* Actions section */
+.actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end; /* Align links to the right */
+}
+
+/* Links */
+.link {
+  text-decoration: none;
+  color: #007bff;
+  margin: 0 7px;
+  &__delete {
+    color: #ff0000;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Error message */
+.error {
+  color: #ff0000;
+}

@@ -36,7 +36,7 @@ const ViewPage = () => {
     <>
       <button onClick={() => navigate(-1)}> {"<"} Back</button>
       <h2>Employee Information</h2>
-      {loading && <p>...</p>}
+      {loading && <p>Loading...</p>}
       {!loading && employee && <EmployeeView employee={employee} />}
       {!loading && errorMess && <p>{errorMess}</p>}
     </>
