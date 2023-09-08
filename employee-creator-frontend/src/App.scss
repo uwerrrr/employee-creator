@@ -11,4 +11,20 @@ body {
   background-color: theme.$backgroundColor;
   // color: theme.$night;
   color: theme.$darkPurple;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  text-align: center;
+}
+
+.subtitle {
+  text-align: center;
+  margin-left: 200px;
+  color: #777;
+  font-style: italic;
+
+  @media screen and (max-width: 470px) {
+    margin-left: 100px;
+  }
 }

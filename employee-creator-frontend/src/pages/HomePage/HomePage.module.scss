@@ -1,0 +1,32 @@
+@use "../../style/theme.scss";
+
+/* Loading message */
+.loading {
+  @include theme.loading();
+}
+
+/* Error message */
+.error {
+  @include theme.error();
+}
+
+.page {
+  @include theme.page();
+}
+
+.pageHeading {
+  @include theme.pageHeading();
+}
+
+.addBtn {
+  background-color: theme.$blue;
+  color: theme.$darkPurple;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+  width: 90%;
+}

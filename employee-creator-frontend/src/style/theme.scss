@@ -1,9 +1,30 @@
 $beige: rgb(255, 244, 238);
 $night: #0c0f0a;
-$blue: rgb(178, 235, 232);
+$blue: #b9e5ec;
 $coral: rgb(253, 175, 187);
-$darkPurple: rgb(32, 23, 75);
+$darkPurple: rgb(53 52 109);
 
 $backgroundColor: $beige;
 
 $borderRadius: 14px;
+
+@mixin error() {
+  color: #ff0000;
+}
+
+@mixin loading() {
+  font-weight: bold;
+  color: #007bff;
+}
+
+@mixin page() {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin pageHeading() {
+  font-size: 24px;
+  margin-bottom: 30px;
+}

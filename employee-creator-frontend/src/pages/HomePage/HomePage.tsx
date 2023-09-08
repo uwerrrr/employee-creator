@@ -3,12 +3,12 @@ import { useContext, useEffect, useState } from "react";
 import EmployeeList from "../../components/EmployeeList/EmployeeList";
 import { getAllEmployee } from "../../services/backend-service";
 import { Employee } from "../../scripts/interfaces";
-import myScripts from "../../scripts/myScripts.ts";
 import {
   RequestNumContext,
   RequestNumContextType,
 } from "../../context/RequestNumContextProvider.tsx";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import style from "./HomePage.module.scss";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -33,18 +33,19 @@ const HomePage = () => {
   }, [requestNum]);
 
   return (
-    <div>
-      <h2>All employees</h2>{" "}
+    <div className={style.page}>
+      <h2 className={style.pageHeading}>All employees</h2>{" "}
       <button
+        className={style.addBtn}
         onClick={() => {
           navigate("/add");
         }}
       >
-        Add new employee
+        ADD NEW EMPLOYEE
       </button>
-      {loading && <p>Loading...</p>}
+      {loading && <p className={style.loading}>Loading...</p>}
       {!loading && employees && <EmployeeList employees={employees} />}
-      {!loading && errorMess && <p>{errorMess}</p>}
+      {!loading && errorMess && <p className={style.error}>{errorMess}</p>}
     </div>
   );
 };

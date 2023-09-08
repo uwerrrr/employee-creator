@@ -12,7 +12,8 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <h1>Employee creator application</h1>
+        <h1 className="title">Employee creator application</h1>
+        <p className="subtitle">Created by Oscar Nguyen</p>
         <EditModeContextProvider>
           <RequestNumContextProvider>
             <Routes>

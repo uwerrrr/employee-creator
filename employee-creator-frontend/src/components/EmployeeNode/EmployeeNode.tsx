@@ -30,7 +30,7 @@ const EmployeeNode: React.FC<EmployeeNodeProps> = ({ employee }) => {
       setDeleteErrorMess((error as Error).message);
       console.error(error);
     } finally {
-      () => setDeleteLoading(false);
+      setDeleteLoading(false);
     }
   };
 
