@@ -6,6 +6,7 @@ import {
   RequestNumContextType,
 } from "../../context/RequestNumContextProvider";
 import { deleteEmployeeById } from "../../services/backend-service";
+import style from "./EmployeeNode.module.scss";
 
 interface EmployeeNodeProps {
   employee: Employee;
@@ -35,32 +36,51 @@ const EmployeeNode: React.FC<EmployeeNodeProps> = ({ employee }) => {
 
   return (
     <>
-      <hr />
-      {deleteLoading && <p>...</p>}
+      {/* <hr className={style.separator} /> */}
+      {deleteLoading && <p className={style.loading}>...</p>}
 
       {!deleteLoading && (
-        <>
-          <section>
-            <h4>
+        <div className={style.card}>
+          <section className={style.info}>
+            <h4 className={style.name}>
               {employee.firstName} {employee.middleName && employee.middleName}{" "}
               {employee.lastName}
             </h4>
-            <p>
+            <p className={style.employment}>
               {employee.employmentType} - {employee.duration} months
             </p>
-            <p>{employee.email}</p>
+            <p className={style.email}>{employee.email}</p>
           </section>
-          <section>
-            <Link to={`${employee.id}`}>View</Link> |{" "}
-            <Link to={`${employee.id}/edit`}>Edit</Link> |{" "}
-            <a href="" onClick={() => handleDelete(employee.id)}>
+          <section className={style.actions}>
+            <Link to={`${employee.id}`} className={style.link}>
+              View
+            </Link>{" "}
+            {` | `}
+            <Link to={`${employee.id}/edit`} className={style.link}>
+              Edit
+            </Link>{" "}
+            {` | `}{" "}
+            <a
+              href="#"
+              className={[style.link__delete, style.link].join(" ")}
+              onClick={() => {
+                const confirmDelete = window.confirm(
+                  "Are you sure you want to delete this employee?"
+                );
+                if (confirmDelete) {
+                  handleDelete(employee.id);
+                }
+              }}
+            >
               Delete
             </a>
           </section>
-        </>
+        </div>
       )}
 
-      {!deleteLoading && deleteErrorMess && <p>{deleteErrorMess}</p>}
+      {!deleteLoading && deleteErrorMess && (
+        <p className={style.error}>{deleteErrorMess}</p>
+      )}
     </>
   );
 };
