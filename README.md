@@ -14,3 +14,8 @@
   - Java
   - Spring Data JPA (for connecting backend to database)
   - mySQL (database) 
+
+## Future Goals
+- Add testing for backend
+- Add testing for frontend
+- Deploy accessible link
