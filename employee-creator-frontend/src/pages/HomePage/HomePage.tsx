@@ -43,7 +43,14 @@ const HomePage = () => {
       >
         ADD NEW EMPLOYEE
       </button>
-      {loading && <p className={style.loading}>Loading...</p>}
+      {loading && (
+        <p className={style.loading}>
+          Loading...
+          <br />
+          Please allow up to 5 minutes for the initial load, as the backend may
+          be starting from sleep mode.
+        </p>
+      )}
       {!loading && employees && <EmployeeList employees={employees} />}
       {!loading && errorMess && <p className={style.error}>{errorMess}</p>}
     </div>
