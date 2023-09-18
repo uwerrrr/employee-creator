@@ -14,10 +14,10 @@ public class WebConfig implements WebMvcConfigurer{
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		// List of URL of the domain from which we want to allow requests to access our server
-	    String[] allowedOrigins = {"http://localhost:5173", "http://localhost:5432"};
+//	    String[] allowedOrigins = {"http://localhost:5173", "http://localhost:5432"};
 			
 		registry.addMapping("/**") // /** : any endpoint on the server is affected by these settings.
-			.allowedOrigins(allowedOrigins)
+			.allowedOrigins("*")
 			.allowedMethods("GET", "POST", "DELETE", "PATCH")
 			.allowedHeaders("*");
 	}
