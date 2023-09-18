@@ -98,4 +98,9 @@ public class EmployeeController {
 		return new ResponseEntity<Employee>(maybeEmployeeUpdated.get(), HttpStatus.OK);
 	}
 	
+	// ----- TEST connection -----
+	@PatchMapping("/test")
+	public String test(){
+		return "Connection is good";
+	}
 }
