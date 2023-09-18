@@ -14,10 +14,9 @@ import {
   updateEmployeeById,
 } from "../../services/backend-service";
 import { useNavigate } from "react-router-dom";
-import myScripts from "../../scripts/myScripts";
 
 export interface EmployeeFormProps {
-  editMode?: boolean;
+  // editMode?: boolean;
   employee?: Employee;
 }
 
@@ -27,7 +26,6 @@ interface FormData extends yup.InferType<typeof schema> {
 }
 
 const EmployeeForm: React.FC<EmployeeFormProps> = ({
-  editMode,
   employee,
 }: EmployeeFormProps) => {
   const getDefaultVal = (

@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import EmployeeView from "../../components/EmployeeView/EmployeeView";
 import { Employee } from "../../scripts/interfaces";
 import { useEffect, useState } from "react";
