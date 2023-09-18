@@ -5,9 +5,12 @@ import {
 } from "../scripts/interfaces";
 import myScripts from "../scripts/myScripts";
 
+const hostDomain = `https://employee-creator-backend.onrender.com/`;
+// localhost = `http://localhost:8080/`
+
 export const getAllEmployee = async (): Promise<Employee[]> => {
   //// fetch data
-  const response = await fetch("http://localhost:8080/employee");
+  const response = await fetch(`${hostDomain}employee`);
 
   if (!response.ok) {
     throw new Error("Could not get employees");
@@ -41,7 +44,7 @@ export const createEmployee = async (
         : null,
   };
 
-  const response = await fetch("http://localhost:8080/employee", {
+  const response = await fetch(`${hostDomain}employee`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -57,7 +60,7 @@ export const createEmployee = async (
 export const getEmployeeById = async (
   id: Employee["id"]
 ): Promise<Employee> => {
-  const response = await fetch(`http://localhost:8080/employee/${id}`);
+  const response = await fetch(`${hostDomain}employee/${id}`);
 
   if (!response.ok) {
     throw new Error(`Employee with id : ${id} does not exist`);
@@ -76,7 +79,7 @@ export const getEmployeeById = async (
 };
 
 export const deleteEmployeeById = async (id: Employee["id"]): Promise<void> => {
-  const response = await fetch(`http://localhost:8080/employee/${id}`, {
+  const response = await fetch(`${hostDomain}employee/${id}`, {
     method: "DELETE",
   });
 
@@ -101,7 +104,7 @@ export const updateEmployeeById = async (
         : null,
   };
 
-  const response = await fetch(`http://localhost:8080/employee/${id}`, {
+  const response = await fetch(`${hostDomain}employee/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
