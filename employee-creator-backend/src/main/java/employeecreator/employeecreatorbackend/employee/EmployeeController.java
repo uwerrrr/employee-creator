@@ -99,7 +99,7 @@ public class EmployeeController {
 	}
 	
 	// ----- TEST connection -----
-	@PatchMapping("/test")
+	@GetMapping("/test")
 	public String test(){
 		return "Connection is good";
 	}
