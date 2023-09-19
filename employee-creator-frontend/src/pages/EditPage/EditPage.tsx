@@ -3,6 +3,9 @@ import EmployeeForm from "../../components/EmployeeForm/EmployeeForm";
 import { useEffect, useState } from "react";
 import { getEmployeeById } from "../../services/backend-service";
 import { Employee } from "../../scripts/interfaces";
+import style from "./EditPage.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBackward } from "@fortawesome/free-solid-svg-icons";
 
 const EditPage = () => {
   const { id } = useParams();
@@ -33,12 +36,16 @@ const EditPage = () => {
   }, [id]);
 
   return (
-    <div>
-      <button onClick={() => navigate(-1)}> {"<"} Back</button>
-      <h2>Edit employee</h2>
-      {loading && <p>Loading...</p>}
+    <div className={style.page}>
+      <h2 className={style.pageHeading}>
+        <button className={style.backBtn} onClick={() => navigate(-1)}>
+          <FontAwesomeIcon icon={faBackward} /> back
+        </button>{" "}
+        Edit employee
+      </h2>
+      {loading && <p className={style.loading}>Loading...</p>}
       {!loading && employee && <EmployeeForm employee={employee} />}
-      {!loading && errorMess && <p>{errorMess}</p>}
+      {!loading && errorMess && <p className={style.error}>{errorMess}</p>}
     </div>
   );
 };

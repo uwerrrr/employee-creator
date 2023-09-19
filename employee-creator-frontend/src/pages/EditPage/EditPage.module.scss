@@ -1,0 +1,19 @@
+@use "../../style/theme.scss";
+
+.error {
+  @include theme.error();
+}
+.loading {
+  @include theme.loading();
+}
+.page {
+  @include theme.page();
+}
+
+.pageHeading {
+  @include theme.pageHeading();
+}
+
+.backBtn {
+  @include theme.backBtn();
+}
