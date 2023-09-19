@@ -303,8 +303,9 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             <p className={style.error}>{errors.hoursPerWeek.message}</p>
           )}
         </div>
-
-        <button type="submit">Submit</button>
+        <div className={style.btn_wrapper}>
+          <button type="submit">Submit</button>
+        </div>
       </form>
       {errorMess && <p>{errorMess}</p>}
     </>

@@ -15,5 +15,11 @@
 
 .backBtn {
   @include theme.backBtn();
+}
+
+.backLink {
+  @include theme.backBtn();
   text-decoration: none;
+  padding: 0;
+  margin: 0;
 }

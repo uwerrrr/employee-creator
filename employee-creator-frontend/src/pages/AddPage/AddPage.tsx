@@ -9,7 +9,7 @@ const AddPage = () => {
     <div className={style.page}>
       <h2 className={style.pageHeading}>
         <button className={style.backBtn}>
-          <Link className={style.backBtn} to={"../"}>
+          <Link className={style.backLink} to={"../"}>
             <FontAwesomeIcon icon={faBackward} /> back
           </Link>
         </button>
