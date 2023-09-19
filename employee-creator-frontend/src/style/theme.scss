@@ -6,7 +6,7 @@ $darkPurple: rgb(53 52 109);
 
 $backgroundColor: $beige;
 
-$borderRadius: 14px;
+$borderRadius: 10px;
 
 @mixin error() {
   color: #ff0000;
@@ -35,7 +35,7 @@ $borderRadius: 14px;
   font-size: 16px;
   padding: 5px 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: $borderRadius;
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s, transform 0.2s;
 
