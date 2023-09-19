@@ -1,0 +1,35 @@
+@use "../../style/theme.scss";
+.error {
+  @include theme.error();
+}
+.loading {
+  @include theme.loading();
+}
+.page {
+  @include theme.page();
+}
+
+.pageHeading {
+  @include theme.pageHeading();
+}
+
+// .backBtn {
+//   background-color: transparent;
+//   color: theme.$darkPurple;
+//   border: none;
+//   border-radius: 5px;
+//   font-size: 16px;
+//   padding: 5px 10px;
+//   margin: 0px 10px;
+//   cursor: pointer;
+//   transition: background-color 0.2s, color 0.2s, transform 0.2s;
+
+//   &:hover {
+//     background-color: theme.$blue;
+//     transform: scale(1.05);
+//   }
+// }
+
+.backBtn {
+  @include theme.backBtn();
+}

@@ -3,6 +3,9 @@ import EmployeeView from "../../components/EmployeeView/EmployeeView";
 import { Employee } from "../../scripts/interfaces";
 import { useEffect, useState } from "react";
 import { getEmployeeById } from "../../services/backend-service";
+import style from "./ViewPage.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBackward } from "@fortawesome/free-solid-svg-icons";
 
 const ViewPage = () => {
   const { id } = useParams();
@@ -33,13 +36,18 @@ const ViewPage = () => {
   }, [id]);
 
   return (
-    <>
-      <button onClick={() => navigate(-1)}> {"<"} Back</button>
-      <h2>Employee Information</h2>
-      {loading && <p>Loading...</p>}
+    <div className={style.page}>
+      <h2 className={style.pageHeading}>
+        <button className={style.backBtn} onClick={() => navigate(-1)}>
+          <FontAwesomeIcon icon={faBackward} /> back
+        </button>
+        Employee Information
+      </h2>
+
+      {loading && <p className={style.loading}>Loading...</p>}
       {!loading && employee && <EmployeeView employee={employee} />}
-      {!loading && errorMess && <p>{errorMess}</p>}
-    </>
+      {!loading && errorMess && <p className={style.error}>{errorMess}</p>}
+    </div>
   );
 };
 

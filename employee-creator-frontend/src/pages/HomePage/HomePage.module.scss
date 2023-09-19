@@ -18,15 +18,24 @@
   @include theme.pageHeading();
 }
 
+// .addBtn {
+//   background-color: theme.$blue;
+//   color: theme.$darkPurple;
+//   font-weight: bold;
+//   padding: 10px 20px;
+//   border: none;
+//   border-radius: 10px;
+//   cursor: pointer;
+//   font-size: 16px;
+//   margin-bottom: 20px;
+//   width: 90%;
+// }
+
 .addBtn {
+  @include theme.btn-style();
   background-color: theme.$blue;
-  color: theme.$darkPurple;
   font-weight: bold;
   padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 16px;
   margin-bottom: 20px;
   width: 90%;
 }

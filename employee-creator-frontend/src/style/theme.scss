@@ -28,3 +28,24 @@ $borderRadius: 14px;
   font-size: 24px;
   margin-bottom: 30px;
 }
+
+@mixin btn-style() {
+  background-color: transparent;
+  color: $darkPurple;
+  font-size: 16px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+@mixin backBtn() {
+  @include btn-style();
+  background-color: $blue;
+  margin: 0px 10px;
+}
