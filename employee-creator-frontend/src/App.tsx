@@ -13,7 +13,10 @@ function App() {
     <>
       <BrowserRouter>
         <h1 className="title">Employee creator application</h1>
-        <p className="subtitle">Created by Oscar Nguyen</p>
+        <p className="subtitle">
+          Created by <a href="https://github.com/uwerrrr">Oscar Nguyen</a>
+        </p>
+
         <EditModeContextProvider>
           <RequestNumContextProvider>
             <Routes>
