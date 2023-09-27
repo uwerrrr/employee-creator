@@ -6,9 +6,33 @@
 
 ## Demo & Snippets
 
+### Deployed version
+
 - You can access the project by following this [link](https://oscar-employeecreator.onrender.com).
   - The frontend, backend and database are deployed using [render.com](https://render.com).
   - **Important**: The backend is deployed with a free tier, so the initial load may take up to 2 minutes if it's waking up from sleep mode.
+
+### Screenshots
+
+1. Main page
+
+- Showing all employee information stored in database.
+- <img src="./snippets/Main page.png" height="500px" width="500px" >
+
+2. View page
+
+- Displaying information of a selected employee.
+- <img src="./snippets/View page.png" height="500px"  >
+
+3. Edit page
+
+- Allowing a user to update the information of a selected employee by making changes via a pre-filled form.
+- <img src="./snippets/Edit page.png" height="500px"  >
+
+4. Create page
+
+- Allowing users to create a new employee by inputting new information into an empty form.
+- <img src="./snippets/Create page.png" height="500px"  >
 
 ---
 
