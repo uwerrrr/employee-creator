@@ -78,6 +78,7 @@
 
 ## Known issues
 
+- Submit does not work in deployed site. (Fixing)
 - Displayed error messages at frontend are not the error messages set at backend
 
 ---
