@@ -54,25 +54,31 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
   const navigate = useNavigate();
 
   const [errorMess, setErrorMess] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const formSubmit = async (data: FormData) => {
     // const formattedData = myScripts.convertUndefinedToNull(data);
     const formattedData = { ...data };
-
+    setIsSubmitting(true);
     setErrorMess(errorMess ? "" : errorMess);
 
+    // create employee
     if (!employee) {
       const toCreateData: CreateEmployeeDTO = { ...formattedData };
 
       try {
         await createEmployee(toCreateData);
         console.log("New employee created");
+        setIsSubmitting(false);
         navigate("/");
       } catch (error) {
+        setIsSubmitting(false);
         setErrorMess((error as Error).message);
         console.error(error);
       }
-    } else {
+    }
+    // edit employee
+    else {
       const toUpdateData: UpdateEmployeeDTO = { ...formattedData };
 
       for (const key in formattedData) {
@@ -102,9 +108,11 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             ? `Employee ${employee.id} is unchanged`
             : `Employee ${employee.id} is updated`
         );
+        setIsSubmitting(false);
         navigate("/");
       } catch (error) {
         setErrorMess((error as Error).message);
+        setIsSubmitting(false);
         console.error(error);
       }
     }
@@ -308,6 +316,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
         </div>
       </form>
       {errorMess && <p>{errorMess}</p>}
+      {isSubmitting && <p>Submitting....</p>}
     </>
   );
 };
