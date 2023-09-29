@@ -10,7 +10,8 @@
 
 - You can access the project by following this [link](https://oscar-employeecreator.onrender.com).
   - The frontend, backend and database are deployed using [render.com](https://render.com).
-  - **Important**: The backend is deployed with a free tier, so the initial load may take up to 2 minutes if it's waking up from sleep mode.
+  - Please access the deployed version with <u>Chromium-based browsers</u> like Chrome for best experience.
+  - <u>**!! Important**</u>: The backend is deployed with a free tier, so the initial load may take up to 2 minutes if it's waking up from sleep mode.
 
 ### Screenshots
 
@@ -78,7 +79,7 @@
 
 ## Known issues
 
-- Submit does not work in deployed site. (Fixing)
+- Submitting and form validation only works with Chromium-based browsers. The functions do not work on Safari browser.
 - Displayed error messages at frontend are not the error messages set at backend
 
 ---
