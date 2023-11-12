@@ -53,7 +53,8 @@ export const createEmployee = async (
   });
 
   if (!response.ok) {
-    throw new Error("Could not create an employee");
+    const errorJson = await response.json(); // Get the response text
+    throw new Error(`Cannot create new employee because ${errorJson.message}`);
   }
 };
 
